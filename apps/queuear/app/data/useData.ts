@@ -18,19 +18,22 @@ export default function useData() {
   ] as IPlannedDeployment[][]);
   const [environment, setEnvironment] = useState('No environment found');
 
-  function load() {
+  async function load() {
     console.log('loading data...');
-    fetch('/api/deployments')
-      .then((res) => res.json())
-      .then((data) => setCurrentDeploymentInfo(data));
+    try {
+      const [deploymentRes, groupedDeploymentsRes, environmentRes] =
+        await Promise.all([
+          fetch('/api/deployments').then((res) => res.json()),
+          fetch('/api/grouped-deployments').then((res) => res.json()),
+          fetch('/api/environment').then((res) => res.text()),
+        ]);
 
-    fetch('api/grouped-deployments')
-      .then((res) => res.json())
-      .then((data) => setGroupedDeployments(data));
-
-    fetch('/api/environment')
-      .then((res) => res.text())
-      .then((data) => setEnvironment(data));
+      setCurrentDeploymentInfo(deploymentRes);
+      setGroupedDeployments(groupedDeploymentsRes);
+      setEnvironment(environmentRes);
+    } catch (error) {
+      console.error('Error loading data:', error);
+    }
   }
 
   useEffect(() => {

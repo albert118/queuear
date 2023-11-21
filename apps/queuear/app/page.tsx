@@ -1,32 +1,25 @@
-'use client';
+import HomePage, { PropType } from './home-page';
 
-import Greeter from './components/greeter';
-import Banner from './components/banner';
-import Footer from './components/footer';
+export async function getData() {
+  const deploymentRes = await fetch('http://localhost:4200/api/deployments');
+  const currentDeploymentInfo = await deploymentRes.json();
 
-import { PlannedDeploymentsList } from './components/plannedeploymentslist';
-import { Actions } from './components/actions';
-import useData from './data/useData';
-
-export default async function Index() {
-  const { currentDeploymentInfo, groupedDeployments, environment, refresh } =
-    useData();
-
-  return (
-    <div className="wrapper">
-      <div className="container auto-center">
-        <Greeter message={environment} />
-
-        <Actions onAdd={() => refresh()} />
-
-        <h2>Current Deployment</h2>
-        <Banner {...currentDeploymentInfo} />
-
-        <h2>Planned Deployments</h2>
-        <PlannedDeploymentsList deploymentGroups={groupedDeployments} />
-
-        <Footer />
-      </div>
-    </div>
+  const groupedDeploymentsRes = await fetch(
+    'http://localhost:4200/api/grouped-deployments'
   );
+  const groupedDeployments = await groupedDeploymentsRes.json();
+
+  const environmentRes = await fetch('http://localhost:4200/api/environment');
+  const environment = await environmentRes.text();
+
+  return {
+    currentDeploymentInfo: currentDeploymentInfo,
+    groupedDeployments: groupedDeployments,
+    environment: environment,
+  } as PropType;
+}
+
+export default async function Page() {
+  const data = await getData();
+  return <HomePage props={data} />;
 }
