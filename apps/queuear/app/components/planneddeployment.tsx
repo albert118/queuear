@@ -1,4 +1,4 @@
-import { IPlannedDeployment } from '../page';
+import { IPlannedDeployment } from '../types';
 import styles from './list.module.scss';
 
 export function PlannedDeployment({

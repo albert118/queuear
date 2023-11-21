@@ -3,8 +3,13 @@ button.button-pill {
   display: flex;
   opacity: 1;
   padding: 0.6rem 0.2rem;
-  min-width: 200px;
+  min-width: 150px;
   min-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
 
   & > span {
     color: rgb(var(--text-high-contrast-rgb));
@@ -18,7 +23,13 @@ button.button-pill {
 
   &:hover svg,
   &:hover {
-    filter: hue-rotate(10deg);
+    filter: hue-rotate(20deg);
+    filter: brightness(110%);
+  }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.65;
   }
 }
 

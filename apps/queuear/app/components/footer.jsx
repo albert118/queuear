@@ -1,7 +1,6 @@
 export default function Footer() {
   return (
     <p id="love">
-      Carefully crafted with
       <svg
         fill="currentColor"
         stroke="none"
