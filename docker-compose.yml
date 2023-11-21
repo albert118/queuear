@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+  queuear:
+    container_name: queuear
+    restart: unless-stopped
+    build: .
+    ports:
+      - '7321:80'
