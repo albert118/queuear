@@ -1,5 +1,7 @@
 # Queuear
 
+> A solution to "who's turn is it anyways?" and "how many devs does it take to deploy a test build?"
+
 <p align="center">
     <a href="https://github.com/albert118/queuear/blob/master/LICENSE">
         <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="Queuear is released under the MIT license" />
@@ -14,8 +16,6 @@
         <img src="https://badges.aleen42.com/src/docker.svg" alt="Queuear is deployed using Docker" />
     </a>
 </p>
-
-> A solution to "who's turn is it anyways?" and "how many devs does it take to deploy a test build?"
 
 ## 👑 Features
 
