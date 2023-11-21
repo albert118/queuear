@@ -5,10 +5,24 @@ import { Button } from './button';
 import { FormModal } from './formmodal';
 import { AddDeployment } from '../forms/adddeployment';
 
+interface IFormData {
+  person?: string;
+  feature?: string;
+}
+
 export function Actions() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
+  const handleClose = (data?: IFormData) => {
+    setOpen(false);
+
+    console.log(data);
+    if (data) {
+      // save
+      console.log(data);
+    }
+  };
 
   return (
     <div className="actions wrapper rounded">

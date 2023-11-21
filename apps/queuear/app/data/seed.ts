@@ -1,32 +1,7 @@
-import { groupDeployments } from './utils';
+import { groupDeployments } from '../utils';
+import { ICurrentDeploymentInfo, IPlannedDeployment, IStatus } from './types';
 
-export interface IPlannedDeployment {
-  person: string;
-  feature: string;
-  strategy: string;
-}
-
-export interface IStatus {
-  name: string;
-  value: number;
-}
-
-export interface ICurrentDeploymentInfo {
-  people: string[];
-  team: string;
-  features: string[];
-  status: IStatus;
-}
-
-export interface IPerson {
-  name: string;
-}
-
-export interface IFeature {
-  name: string;
-}
-
-export const plannedDeploymentsDemo = [
+const plannedDeploymentsDemo = [
   {
     person: 'jk. rowling',
     feature: 'Yet another QA demo',
@@ -49,26 +24,22 @@ export const plannedDeploymentsDemo = [
   },
 ] as IPlannedDeployment[];
 
-export const groupedDeploymentsDemo = groupDeployments(
-  plannedDeploymentsDemo
-) as IPlannedDeployment[][];
-
-export const availableStatus = {
+const availableStatus = {
   name: 'Available',
   value: 0,
 };
 
-export const busyStatus = {
+const busyStatus = {
   name: 'Busy',
   value: 1,
 };
 
-export const plannedStatus = {
+const plannedStatus = {
   name: 'Planned',
   value: 2,
 };
 
-export const pendingStatus = {
+const pendingStatus = {
   name: 'Pending',
   value: 3,
 };
@@ -92,3 +63,7 @@ export const currentDeploymentInfoDemo = {
   features: ['Feature A', 'Feature B', 'Feature C'],
   status: getDemoStatus(),
 } as ICurrentDeploymentInfo;
+
+export const groupedDeploymentsDemo = groupDeployments(
+  plannedDeploymentsDemo
+) as IPlannedDeployment[][];

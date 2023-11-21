@@ -6,6 +6,7 @@ import TextInput from './textinput';
 import styles from './form.module.scss';
 
 export function AddDeployment({ onClose }) {
+  // default state is set
   const [data, setData] = useState({
     person: null,
     feature: null,
@@ -20,14 +21,12 @@ export function AddDeployment({ onClose }) {
 
   const onCancel = () => {
     console.log('canceled');
-    console.log(data);
-    onClose();
+    onClose(null);
   };
 
   const onSubmit = () => {
     console.log('saved and submitted');
-    console.log(data);
-    onClose();
+    onClose(data);
   };
 
   return (
