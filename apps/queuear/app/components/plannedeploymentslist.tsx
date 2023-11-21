@@ -25,6 +25,7 @@ function DeploymentGroup({ group }: { group: IPlannedDeployment[] }) {
       {group.map((planned) => (
         <PlannedDeployment key={planned.feature} plannedDeployment={planned} />
       ))}
+      <label className="small-label">{groupStrategy}</label>
     </div>
   );
 }

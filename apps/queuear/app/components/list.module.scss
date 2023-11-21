@@ -9,12 +9,11 @@
 .list-item {
   display: flex;
   flex-wrap: wrap;
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem;
   background-color: rgb(var(--background));
 
   //  rows
   & > span {
-    flex: 0 0 auto;
     width: 50%;
   }
 

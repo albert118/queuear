@@ -8,8 +8,18 @@ export function PlannedDeployment({
 }) {
   return (
     <div className={`${styles['list-item']} wrapper rounded`}>
-      <span className="text">{plannedDeployment.person}</span>
-      <span className="text">{plannedDeployment.feature}</span>
+      <span id="person" className="text">
+        <label htmlFor="person" className="small-label">
+          Person
+        </label>
+        {plannedDeployment.person}
+      </span>
+      <span id="feature" className="text">
+        <label htmlFor="feature" className="small-label">
+          Feature
+        </label>
+        {plannedDeployment.feature}
+      </span>
     </div>
   );
 }

@@ -114,8 +114,16 @@ pre {
   font-weight: 400;
   font-size: 1.125rem;
   line-height: 1.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 0 1rem;
+}
+
+.small-label {
+  color: rgb(var(--text-rgb));
+  letter-spacing: -0.025em;
+  font-weight: 200;
+  font-size: 0.6rem;
+  line-height: 0.2rem;
+  padding: 0 1rem;
 }
 
 .hover-transition {
