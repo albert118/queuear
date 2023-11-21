@@ -1,6 +1,7 @@
 body {
   /* colors */
   --primary-rgb: 219, 39, 119;
+  --secondary-rgb: 70, 128, 128;
   --info-rgb: 13, 202, 240;
   --warn-rgb: 248, 163, 6;
   --error-rgb: 190, 47, 47;
@@ -73,6 +74,21 @@ pre {
   padding: 0.5rem 0.75rem;
 }
 
+h1,
+h2 {
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
 .shadow {
   box-shadow: 0 0 #0000, 0 0 #0000, 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -134,15 +150,9 @@ pre {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#welcome {
+#welcome,
+.section-title {
   margin: 2.5rem 0;
-}
-
-#welcome h1 {
-  font-size: 3rem;
-  font-weight: 500;
-  letter-spacing: -0.025em;
-  line-height: 1;
 }
 
 #welcome span {
@@ -169,4 +179,11 @@ pre {
     display: inline;
     margin-top: -0.25rem;
   }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  column-gap: 0.6rem;
 }

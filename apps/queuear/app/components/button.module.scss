@@ -1,9 +1,10 @@
 button.button-pill {
-  background-color: rgb(var(--primary-rgb));
-  padding: 1.5rem 2rem;
   align-items: center;
   display: flex;
   opacity: 1;
+  padding: 0.6rem 0.2rem;
+  min-width: 200px;
+  min-height: 50px;
 
   & > span {
     color: rgb(var(--text-high-contrast-rgb));
@@ -19,4 +20,12 @@ button.button-pill {
   &:hover {
     filter: hue-rotate(10deg);
   }
+}
+
+.primary {
+  background-color: rgb(var(--primary-rgb));
+}
+
+.secondary {
+  background-color: rgb(var(--secondary-rgb));
 }

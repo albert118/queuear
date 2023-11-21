@@ -1,4 +1,3 @@
-import { Button } from './Button';
 import styles from './banner.module.scss';
 import StatusLabel from './statuslabel';
 
@@ -23,9 +22,6 @@ export default async function Banner({ status, people, features }) {
           ))}
         </div>
       </div>
-
-      {/* only show queue when available */}
-      {status.value === 0 && <Button>Queue a deployment</Button>}
     </div>
   );
 }
