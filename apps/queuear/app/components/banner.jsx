@@ -4,9 +4,10 @@ import styles from './banner.module.scss';
 import StatusLabel from './statuslabel';
 import { Button } from './button';
 
-export default async function Banner({ status, people, features }) {
+export default function Banner({ status, people, features }) {
   const exampleDateTime = '11:23am';
   const exampleBranch = 'staging/dev2-example';
+
   return (
     <div className="wrapper">
       <div className={`${styles.banner} wrapper rounded shadow`}>

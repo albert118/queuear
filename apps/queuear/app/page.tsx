@@ -9,19 +9,15 @@ import { Actions } from './components/actions';
 import useData from './data/useData';
 
 export default async function Index() {
-  const {
-    currentDeploymentInfo,
-    groupedDeployments,
-    environment,
-    toggleRefresh,
-  } = useData();
+  const { currentDeploymentInfo, groupedDeployments, environment, refresh } =
+    useData();
 
   return (
     <div className="wrapper">
       <div className="container auto-center">
         <Greeter message={environment} />
 
-        <Actions onAdd={() => toggleRefresh()} />
+        <Actions onAdd={() => refresh()} />
 
         <h2>Current Deployment</h2>
         <Banner {...currentDeploymentInfo} />

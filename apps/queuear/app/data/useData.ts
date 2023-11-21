@@ -17,14 +17,8 @@ export default function useData() {
     [SkeletonPlannedDeployment],
   ] as IPlannedDeployment[][]);
   const [environment, setEnvironment] = useState('No environment found');
-  const [refresh, setRefresh] = useState(false);
 
-  const toggleRefresh = () => {
-    console.log('refreshed!');
-    setRefresh(!refresh);
-  };
-
-  useEffect(() => {
+  function load() {
     console.log('loading data...');
     fetch('/api/deployments')
       .then((res) => res.json())
@@ -37,12 +31,16 @@ export default function useData() {
     fetch('/api/environment')
       .then((res) => res.text())
       .then((data) => setEnvironment(data));
-  }, [refresh]);
+  }
+
+  useEffect(() => {
+    load();
+  }, []);
 
   return {
     currentDeploymentInfo,
     groupedDeployments,
     environment,
-    toggleRefresh,
+    refresh: load,
   };
 }
