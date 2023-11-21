@@ -6,10 +6,11 @@ import TextInput from './textinput';
 import styles from './form.module.scss';
 
 export function AddDeployment({ onClose }) {
-  // default state is set
+  // default state is set (IPlannedDeployment)
   const [data, setData] = useState({
     person: null,
     feature: null,
+    strategy: 'batched',
   });
 
   const onUpdate = (event) => {
@@ -42,6 +43,13 @@ export function AddDeployment({ onClose }) {
         label="Feature"
         value={data.feature}
         name="feature"
+        onChange={onUpdate}
+      />
+
+      <TextInput
+        label="Strategy"
+        value={data.strategy}
+        name="strategy"
         onChange={onUpdate}
       />
 

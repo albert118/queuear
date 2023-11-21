@@ -1,11 +1,8 @@
-export default async function Greeter() {
-  const res = await fetch('http://localhost:4200/api/environment');
-  const environment = res.text() ?? 'No environment found';
-
+export default async function Greeter({ message }) {
   return (
     <div id="welcome">
       <h1>
-        <span>{environment}</span>
+        <span>{message}</span>
         Welcome 👋
       </h1>
     </div>

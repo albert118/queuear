@@ -1,6 +1,9 @@
+'use client';
+
 export default function Footer() {
   return (
     <p id="love">
+      Carefully crafted with&nbsp;
       <svg
         fill="currentColor"
         stroke="none"

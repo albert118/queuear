@@ -4,23 +4,20 @@ import { useState } from 'react';
 import { Button } from './button';
 import { FormModal } from './formmodal';
 import { AddDeployment } from '../forms/adddeployment';
-
-interface IFormData {
-  person?: string;
-  feature?: string;
-}
+import { IPlannedDeployment } from '../data/types';
 
 export function Actions() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
 
-  const handleClose = (data?: IFormData) => {
+  const handleClose = async (data?: IPlannedDeployment) => {
     setOpen(false);
 
-    console.log(data);
     if (data) {
-      // save
-      console.log(data);
+      await fetch('/api/deployments', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      });
     }
   };
 
