@@ -1,5 +1,15 @@
-import { groupedDeploymentsDemo } from '../../data/seed';
+import { getPlannedDeployments } from '../../data/seed';
+import { IPlannedDeployment } from '../../data/types';
+import { groupDeployments } from '../../utils';
 
-export function GET() {
-  return new Response(JSON.stringify(groupedDeploymentsDemo));
+export async function GET() {
+  const plannedDeploymentsDemo = await getPlannedDeployments();
+  console.log(plannedDeploymentsDemo);
+
+  const grouped = groupDeployments(
+    plannedDeploymentsDemo
+  ) as IPlannedDeployment[][];
+
+  console.log(grouped);
+  return new Response(JSON.stringify(grouped));
 }

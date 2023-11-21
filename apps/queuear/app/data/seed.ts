@@ -1,5 +1,6 @@
-import { groupDeployments } from '../utils';
 import { ICurrentDeploymentInfo, IPlannedDeployment, IStatus } from './types';
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 
 export const plannedDeploymentsDemo = [
   {
@@ -23,6 +24,20 @@ export const plannedDeploymentsDemo = [
     strategy: 'batch',
   },
 ] as IPlannedDeployment[];
+
+export async function seed() {
+  await prisma.plannedDeployment.createMany({ data: plannedDeploymentsDemo });
+}
+
+export async function getPlannedDeployments() {
+  const data = await prisma.plannedDeployment.findMany();
+  return data;
+}
+
+export async function updateDeployments(deployment: IPlannedDeployment) {
+  await prisma.plannedDeployment.createMany({ data: [deployment] });
+  console.log('updated planned deployments');
+}
 
 const availableStatus = {
   name: 'Available',
@@ -63,7 +78,3 @@ export const currentDeploymentInfoDemo = {
   features: ['Feature A', 'Feature B', 'Feature C'],
   status: getDemoStatus(),
 } as ICurrentDeploymentInfo;
-
-export const groupedDeploymentsDemo = groupDeployments(
-  plannedDeploymentsDemo
-) as IPlannedDeployment[][];

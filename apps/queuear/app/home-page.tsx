@@ -5,7 +5,7 @@ import Banner from './components/banner';
 import Footer from './components/footer';
 
 import { PlannedDeploymentsList } from './components/plannedeploymentslist';
-import { Actions } from './components/actions';
+import { AddAction } from './components/addaction';
 import { ICurrentDeploymentInfo, IPlannedDeployment } from './data/types';
 
 export type PropType = {
@@ -22,7 +22,7 @@ export default function HomePage({ props }: { props: PropType }) {
       <div className="container auto-center">
         <Greeter message={environment} />
 
-        <Actions />
+        <AddAction />
 
         <h2>Current Deployment</h2>
         <Banner {...currentDeploymentInfo} />

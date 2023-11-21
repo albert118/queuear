@@ -4,13 +4,14 @@ import { useState } from 'react';
 import { Button } from '../components/button';
 import TextInput from './textinput';
 import styles from './form.module.scss';
+import submit from './actions';
 
 export function AddDeployment({ onClose }) {
   // default state is set (IPlannedDeployment)
   const [data, setData] = useState({
     person: null,
     feature: null,
-    strategy: 'batched',
+    strategy: 'batch',
   });
 
   const onUpdate = (event) => {
@@ -25,13 +26,14 @@ export function AddDeployment({ onClose }) {
     onClose(null);
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     console.log('saved and submitted');
+    await submit(data);
     onClose(data);
   };
 
   return (
-    <form onSubmit={onSubmit} className={styles['form']}>
+    <form className={styles['form']}>
       <TextInput
         label="Person"
         value={data.person}
