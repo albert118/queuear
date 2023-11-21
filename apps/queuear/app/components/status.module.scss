@@ -1,0 +1,23 @@
+.status-label {
+  padding: 1.2rem 0.6rem;
+
+  & > span {
+    color: rgb(var(--text-high-contrast-rgb)) !important;
+  }
+}
+
+.available {
+  background-color: rgb(var(--info-rgb));
+}
+
+.busy {
+  background-color: rgb(var(--warn-rgb));
+}
+
+.planned {
+  background-color: rgb(var(--note-rgb));
+}
+
+.pending {
+  background-color: rgb(var(--note-rgb));
+}

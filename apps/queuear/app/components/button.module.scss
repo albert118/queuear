@@ -1,0 +1,22 @@
+button.button-pill {
+  background-color: rgb(var(--primary-rgb));
+  padding: 1.5rem 2rem;
+  align-items: center;
+  display: flex;
+  opacity: 1;
+
+  & > span {
+    color: rgb(var(--text-high-contrast-rgb));
+    letter-spacing: -0.025em;
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  &:hover svg,
+  &:hover {
+    filter: hue-rotate(10deg);
+  }
+}

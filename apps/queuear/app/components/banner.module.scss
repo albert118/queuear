@@ -1,0 +1,14 @@
+.banner {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 1;
+  background-color: rgb(var(--background));
+
+  .banner--content {
+    display: flex;
+    width: 100%;
+    padding: 0 3rem;
+  }
+}
