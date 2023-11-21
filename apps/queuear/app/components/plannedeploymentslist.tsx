@@ -1,3 +1,5 @@
+'use client';
+
 import { PlannedDeployment } from './planneddeployment';
 import { IPlannedDeployment } from '../data/types';
 import styles from './list.module.scss';

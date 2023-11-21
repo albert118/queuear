@@ -1,7 +1,7 @@
 import { groupDeployments } from '../utils';
 import { ICurrentDeploymentInfo, IPlannedDeployment, IStatus } from './types';
 
-const plannedDeploymentsDemo = [
+export const plannedDeploymentsDemo = [
   {
     person: 'jk. rowling',
     feature: 'Yet another QA demo',

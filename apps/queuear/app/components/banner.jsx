@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './banner.module.scss';
 import StatusLabel from './statuslabel';
 import { Button } from './button';

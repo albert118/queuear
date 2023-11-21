@@ -6,7 +6,7 @@ import { FormModal } from './formmodal';
 import { AddDeployment } from '../forms/adddeployment';
 import { IPlannedDeployment } from '../data/types';
 
-export function Actions() {
+export function Actions({ onAdd }: { onAdd: () => void }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
 
@@ -19,6 +19,8 @@ export function Actions() {
         body: JSON.stringify(data),
       });
     }
+
+    onAdd();
   };
 
   return (
