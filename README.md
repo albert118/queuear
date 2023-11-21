@@ -33,7 +33,7 @@ Open your browser and navigate to <http://localhost:4200/>. Happy coding!
 
 ## 👀 Examples
 
-_TODO_
+![Alt text](image.png)
 
 ## Generate code
 
@@ -66,6 +66,12 @@ nx run-many -t <target1> <target2> -p <proj1> <proj2>
 Targets can be defined in the `package.json` or `projects.json`. Learn more [in the docs](https://nx.dev/core-features/run-tasks).
 
 ## Build
+
+TODO
+
+https://dev.to/sebastiandg7/nx-nextjs-docker-the-nx-way-containerizing-our-application-1mi7
+
+https://nx.dev/node-server-tutorial/5-docker-target
 
 ```sh
 nx build queuear
