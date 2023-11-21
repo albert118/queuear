@@ -1,0 +1,32 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 4px;
+  background-color: rgb(var(--background));
+}
+
+.list-item {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2rem 1rem;
+  background-color: rgb(var(--background));
+
+  //  rows
+  & > span {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+
+  &:hover {
+    background-color: rgb(var(--background-dark));
+  }
+}
+
+.batch {
+  border: 1px solid rgb(36, 200, 88);
+}
+
+.single {
+  border: 1px solid rgb(124, 58, 237);
+}

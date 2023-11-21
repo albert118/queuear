@@ -6,6 +6,7 @@ body {
   --error-rgb: 190, 47, 47;
   --note-rgb: 64, 64, 143;
   --background: 13, 17, 23;
+  --background-dark: 8, 11, 18;
   --text-rgb: 177, 184, 192;
   --text-high-contrast-rgb: 229, 229, 229;
   /* transitions */
@@ -97,6 +98,9 @@ pre {
   padding-right: 1rem;
   color: rgba(55, 65, 81, 1);
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .text-container {
@@ -109,7 +113,7 @@ pre {
   letter-spacing: -0.025em;
   font-weight: 400;
   font-size: 1.125rem;
-  line-height: 1.75rem;
+  line-height: 1.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
 }
@@ -123,8 +127,7 @@ pre {
 }
 
 #welcome {
-  margin-top: 2.5rem;
-  padding-bottom: 2rem;
+  margin: 2.5rem 0;
 }
 
 #welcome h1 {
