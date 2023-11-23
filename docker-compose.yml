@@ -4,6 +4,6 @@ services:
   queuear:
     container_name: queuear
     restart: unless-stopped
-    build: .
+    entrypoint: ['npm', 'start']
     ports:
-      - '7321:80'
+      - '7321:4200'

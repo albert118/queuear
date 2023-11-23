@@ -31,17 +31,18 @@ nx serve queuear
 
 Open your browser and navigate to <http://localhost:4200/>. Happy coding!
 
+To preview the production server run,
+
+```sh
+nx run queuear:build:production
+nx run queuear:serve:production
+```
+
+Likewise visit <http://localhost:4200/> again.
+
 ## 👀 Examples
 
 ![Alt text](image.png)
-
-## Generate code
-
-If you happen to use Nx plugins, you can leverage code generators that might come with it.
-
-Run `nx list` to get a list of available plugins and whether they have generators. Then run `nx list <plugin-name>` to see what generators are available.
-
-Learn more about [Nx generators on the docs](https://nx.dev/plugin-features/use-code-generators).
 
 ## Running tasks
 
@@ -65,24 +66,11 @@ nx run-many -t <target1> <target2> -p <proj1> <proj2>
 
 Targets can be defined in the `package.json` or `projects.json`. Learn more [in the docs](https://nx.dev/core-features/run-tasks).
 
-## Build
+## Production Deployment
 
-TODO
-
-https://dev.to/sebastiandg7/nx-nextjs-docker-the-nx-way-containerizing-our-application-1mi7
-
-https://nx.dev/node-server-tutorial/5-docker-target
+- TODO: https://stackoverflow.com/questions/67746885/prisma-client-did-not-initialize-yet-please-run-prisma-generate-and-try-to-i
 
 ```sh
-nx build queuear
-docker compose up
-``
-
-## Want better Editor Integration?
-
-Have a look at the [Nx Console extensions](https://nx.dev/nx-console). It provides autocomplete support, a UI for exploring and running tasks & generators, and more! Available for VSCode, IntelliJ and comes with a LSP for Vim users.
-
-## Ready to deploy?
-
-Just run `nx build demoapp` to build the application. The build artifacts will be stored in the `dist/` directory, ready to be deployed.
+nx run queuear:docker-build
+docker run -p 4200:4200 -it queuear
 ```

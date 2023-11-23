@@ -8,6 +8,7 @@
       "executor": "@nx/next:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
+      "generatePackageJson": true,
       "options": {
         "outputPath": "dist/apps/queuear"
       },
@@ -54,6 +55,18 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/queuear/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "docker-build": {
+      "dependsOn": ["build"],
+      "command": "docker build -f apps/queuear/Dockerfile . -t queuear"
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["docker-build"],
+      "outputs": [],
+      "options": {
+        "command": "docker run -it queuear"
       }
     }
   },
