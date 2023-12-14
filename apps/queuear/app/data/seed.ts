@@ -1,5 +1,6 @@
 import { ICurrentDeploymentInfo, IPlannedDeployment, IStatus } from './types';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@queuear/models';
+
 const prisma = new PrismaClient();
 
 export const plannedDeploymentsDemo = [
