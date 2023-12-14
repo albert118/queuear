@@ -74,7 +74,7 @@ Targets can be defined in the `package.json` or `projects.json`. Learn more [in 
 
 ```sh
 nx run queuear:docker-build
-docker run -p 4200:4200 -it queuear
+docker run --env-file ./.env -p 4200:4200 -it queuear
 # or
 docker compose up
 ```
