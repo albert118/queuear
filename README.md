@@ -19,7 +19,9 @@
 
 ## 👑 Features
 
-_TODO_
+- view what code is currently deployed and by who
+- plan upcoming deployments by joining a queue
+- join an existing deployment group or or request a single deployment
 
 ## 📌 Getting started
 
@@ -73,4 +75,6 @@ Targets can be defined in the `package.json` or `projects.json`. Learn more [in 
 ```sh
 nx run queuear:docker-build
 docker run -p 4200:4200 -it queuear
+# or
+docker compose up
 ```

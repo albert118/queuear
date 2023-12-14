@@ -8,7 +8,7 @@
       "dependsOn": ["generate-types"],
       "options": {
         "cwd": "libs/models",
-        "command": "mkdir -p ../../dist/libs/models && cp prisma/* ../../dist/libs/models"
+        "command": "mkdir -p ../../dist/libs/models/prisma && cp prisma/* ../../dist/libs/models/prisma"
       }
     },
     "prisma": {

@@ -7,7 +7,7 @@ RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
 
-COPY package.json ./
+COPY package.json .
 
 RUN npm install --omit=dev
 
@@ -20,7 +20,13 @@ RUN chown nextjs:nodejs .next
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --chown=nextjs:nodejs dist/apps/queuear ./
+COPY --chown=nextjs:nodejs dist/apps/queuear .
+
+# include the models content
+COPY --chown=nextjs:nodejs dist/libs/models .
+
+# setup prisma
+RUN npx prisma generate
 
 USER nextjs
 
