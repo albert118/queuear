@@ -10,7 +10,7 @@ export default function Greeter({
   return (
     <div id="welcome">
       <h1>
-        <span>{name ?? 'No environment found'}</span>
+        <span>Environment: {name ?? 'No environment found'}</span>
         {welcomeMessage ?? 'Welcome 👋'}
       </h1>
     </div>

@@ -1,14 +1,21 @@
-import { getPlannedDeployments } from '../../data/seed';
-import { IPlannedDeployment } from '../../data/types';
 import { groupDeployments } from '../../utils';
+import { PlannedDeploymentSummary, PrismaClient } from '@queuear/models';
+
+const prisma = new PrismaClient();
+
+async function getPlannedDeployments() {
+  const result = await prisma.plannedDeployment.findMany();
+  return result;
+}
 
 export async function GET() {
-  const plannedDeploymentsDemo = await getPlannedDeployments();
-  console.log(plannedDeploymentsDemo);
+  const allPlannedDeployments = await getPlannedDeployments();
+
+  console.log(allPlannedDeployments);
 
   const grouped = groupDeployments(
-    plannedDeploymentsDemo
-  ) as IPlannedDeployment[][];
+    allPlannedDeployments
+  ) as PlannedDeploymentSummary[][];
 
   console.log(grouped);
   return new Response(JSON.stringify(grouped));

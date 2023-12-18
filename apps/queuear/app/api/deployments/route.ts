@@ -1,5 +1,22 @@
-import { currentDeploymentInfoDemo } from '../../data/seed';
+import { PrismaClient } from '@queuear/models';
 
-export function GET() {
-  return new Response(JSON.stringify(currentDeploymentInfoDemo));
+const prisma = new PrismaClient();
+
+async function getCurrentDeployment() {
+  const result = await prisma.deployment.findFirst({
+    where: {
+      deployedAt: { not: null },
+      completedAt: { not: null },
+    },
+    orderBy: {
+      deployedAt: { sort: 'desc' },
+    },
+  });
+
+  return result;
+}
+
+export async function GET() {
+  const currentDeployment = await getCurrentDeployment();
+  return new Response(JSON.stringify(currentDeployment));
 }

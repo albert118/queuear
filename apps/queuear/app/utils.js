@@ -1,3 +1,5 @@
+// TODO: make this a separate lib maybe?
+
 export function groupDeployments(plannedDeployments) {
   const groups = [];
   let nextGroup = [];
