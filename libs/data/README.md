@@ -1,3 +1,5 @@
-# data
+# Data (hooks) library
 
-This library was generated with [Nx](https://nx.dev).
+> All code here is client side! Don't add server-side code here!!
+
+An neat lib that holds all the client side data fetching code.
