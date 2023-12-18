@@ -40,33 +40,14 @@ nx run queuear:build:production
 nx run queuear:serve:production
 ```
 
+This project uses nx and is configured with a variety of tasks. Typically, they are formatted as `nx run project:task`
+Learn more [in the Nx docs](https://nx.dev/core-features/run-tasks).
+
 Likewise visit <http://localhost:4200/> again.
 
 ## 👀 Examples
 
 ![Alt text](image.png)
-
-## Running tasks
-
-To execute tasks with Nx use the following syntax:
-
-```sh
-nx <target> <project> <...options>
-```
-
-You can also run multiple targets:
-
-```sh
-nx run-many -t <target1> <target2>
-```
-
-..or add `-p` to filter specific projects
-
-```sh
-nx run-many -t <target1> <target2> -p <proj1> <proj2>
-```
-
-Targets can be defined in the `package.json` or `projects.json`. Learn more [in the docs](https://nx.dev/core-features/run-tasks).
 
 ## Production Deployment
 

@@ -1,17 +1,21 @@
 # Prisma lib
 
-on using prisma with docker,
+Building this lib copies the relevant contents to the `dist` directory. This artifact is
+then picked up by the docker build process task.
 
-https://github.com/prisma/prisma/issues/21241
+This also generates a README with a quick intro to the Prisma client, see the [node_modules](../../node_modules/@prisma/client/README.md)
 
-building this lib copies the relevant contents to dist
-the dist content is then picked up by the docker build process
-this lib's build task is a dependency of the apps
+<details>
+    <summary>
+        On using prisma with docker
+    </summary>
+    [Read more about it here](https://github.com/prisma/prisma/issues/21241)
+<details>
 
-### related reading
+## Related reading and docs
 
-https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-api-routes
+[A NextJs REST example](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-api-routes)
 
-https://github.com/nrwl/nx-recipes/tree/main/nestjs-prisma#nx--nestjs--prisma
+[An example with NestJs and Nx](https://github.com/nrwl/nx-recipes/tree/main/nestjs-prisma#nx--nestjs--prisma)
 
-https://medium.com/swlh/nx-model-with-prisma-68ad1bf90379
+[Schema modelling](https://medium.com/swlh/nx-model-with-prisma-68ad1bf90379)
