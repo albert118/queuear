@@ -5,10 +5,17 @@
   "targets": {
     "build": {
       "executor": "nx:run-commands",
-      "dependsOn": ["generate-types"],
+      "dependsOn": ["format", "clean", "generate-types"],
       "options": {
         "cwd": "libs/models",
         "command": "mkdir -p ../../dist/libs/models/prisma && cp prisma/* ../../dist/libs/models/prisma"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "libs/models",
+        "command": "[ -d '../../dist/libs/models' ] && rm -rdv ../../dist/libs/models || echo 'nothing to clean - skipping models clean task'"
       }
     },
     "prisma": {

@@ -44,3 +44,4 @@ Thumbs.db
 .next
 
 .env
+libs/models/*.sh
