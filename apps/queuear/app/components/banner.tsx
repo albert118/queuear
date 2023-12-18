@@ -3,10 +3,19 @@
 import styles from './banner.module.scss';
 import StatusLabel from './statuslabel';
 import { Button } from './button';
+import { titleCase } from '../utils';
+import { CurrentDeployment, Status } from '@queuear/models';
 
-export default function Banner({ status, people, features }) {
-  const exampleDateTime = '11:23am';
-  const exampleBranch = 'staging/dev2-example';
+export default function Banner({
+  currentDeployment,
+}: {
+  currentDeployment: CurrentDeployment;
+}) {
+  const { DeploymentStatus, DeployedAt, BranchName, Features, People } =
+    currentDeployment;
+
+  const defaultExampleBranchUrl =
+    'https://github.com/albert118/queuear/branches';
 
   return (
     <div className="wrapper">
@@ -14,14 +23,14 @@ export default function Banner({ status, people, features }) {
         <StatusLabel className="banner--status" status={status} />
         <div className={styles['banner--content']}>
           <div className="text-container">
-            {people.map((person, idx) => (
+            {People.map((person, idx) => (
               <div key={idx} className="text">
                 {titleCase(person)}
               </div>
             ))}
           </div>
           <div className="text-container">
-            {features.map((feature, idx) => (
+            {Features.map((feature, idx) => (
               <div key={idx} className="text">
                 {titleCase(feature)}
               </div>
@@ -29,26 +38,24 @@ export default function Banner({ status, people, features }) {
           </div>
         </div>
 
-        {status.value === 1 && (
+        {DeploymentStatus === Status.DEPLOYED && (
           <Button primary={false} disabled={true}>
             Cancel
           </Button>
         )}
       </div>
-      <label className="small-label">Deployed at: {exampleDateTime}</label>
       <label className="small-label">
-        Branch:{' '}
+        Deployed at: {DeployedAt.toString()}
+      </label>
+      <label className="small-label">
+        Branch:&nbsp
         <a
-          href="https://github.com/albert118/queuear/branches"
+          href={BranchName.url?.toString() ?? defaultExampleBranchUrl}
           style={{ color: 'lightgreen' }}
         >
-          {exampleBranch}
+          {BranchName.name}
         </a>
       </label>
     </div>
   );
-}
-
-function titleCase(str) {
-  return str.toLowerCase().replace(/\b\w/g, (s) => s.toUpperCase());
 }

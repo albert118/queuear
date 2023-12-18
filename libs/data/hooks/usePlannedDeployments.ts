@@ -2,9 +2,17 @@
 
 import { useEffect, useState } from 'react';
 import { useFetch } from '../fetch/useFetch';
+import {
+  PlannedGroupsSkeleton,
+  PlannedDeploymentSummary,
+} from '@queuear/models';
 
-export default function usePlannedDeployments() {
-  const [plannedDeployments, setPlannedDeployments] = useState(null);
+export default function usePlannedDeployments(): {
+  plannedDeployments: PlannedDeploymentSummary[][];
+} {
+  const [plannedDeployments, setPlannedDeployments] = useState<
+    PlannedDeploymentSummary[][]
+  >(PlannedGroupsSkeleton);
   const { get } = useFetch();
 
   useEffect(() => {

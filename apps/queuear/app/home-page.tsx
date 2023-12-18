@@ -6,29 +6,34 @@ import Footer from './components/footer';
 
 import { PlannedDeploymentsList } from './components/plannedeploymentslist';
 import { AddAction } from './components/addaction';
-import { ICurrentDeploymentInfo, IPlannedDeployment } from './data/types';
 
-export type PropType = {
-  currentDeploymentInfo: ICurrentDeploymentInfo;
-  groupedDeployments: IPlannedDeployment[][];
-  environment: string;
-};
+import {
+  CurrentDeployment,
+  PlannedDeploymentSummary,
+  Environment,
+} from '@queuear/models';
 
-export default function HomePage({ props }: { props: PropType }) {
-  const { environment, currentDeploymentInfo, groupedDeployments } = props;
-
+export default function HomePage({
+  environment,
+  currentDeployment,
+  deploymentGroups,
+}: {
+  environment: Environment;
+  currentDeployment: CurrentDeployment;
+  deploymentGroups: PlannedDeploymentSummary[][];
+}) {
   return (
     <div className="wrapper">
       <div className="container auto-center">
-        <Greeter message={environment} />
+        <Greeter {...environment} />
 
         <AddAction />
 
         <h2>Current Deployment</h2>
-        <Banner {...currentDeploymentInfo} />
+        <Banner currentDeployment={currentDeployment} />
 
         <h2>Planned Deployments</h2>
-        <PlannedDeploymentsList deploymentGroups={groupedDeployments} />
+        <PlannedDeploymentsList deploymentGroups={deploymentGroups} />
 
         <Footer />
       </div>
