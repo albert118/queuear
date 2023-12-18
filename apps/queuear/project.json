@@ -66,7 +66,7 @@
       "dependsOn": ["docker-build"],
       "outputs": [],
       "options": {
-        "command": "docker run -it queuear"
+        "command": "docker run --env-file ./.env -p 4200:4200 -i queuear"
       }
     }
   },
