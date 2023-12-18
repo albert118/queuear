@@ -8,6 +8,7 @@ import submit from './actions';
 
 export function AddDeployment({ onClose }) {
   // default state is set (IPlannedDeployment)
+  // TODO: dropdowns for people + teams + strategies
   const [data, setData] = useState({
     person: null,
     feature: null,

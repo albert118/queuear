@@ -18,6 +18,7 @@ export async function generateDeployment(prisma: PrismaClient) {
     deployedAt: new Date('2023-12-18T11:23:10.000Z'),
     strategy: Strategy.BATCHED,
     status: Status.PLANNED,
+    branchName: 'deployment/number-special-very-trackable',
   } as Deployment;
 
   const contentInDeployment = [

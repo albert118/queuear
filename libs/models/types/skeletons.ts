@@ -6,10 +6,11 @@ import {
 import { Status, Strategy } from '@prisma/client';
 
 const loading = 'loading...';
+const dummyUrl = new URL('https://http://localhost:4200/');
 
 export const CurrentDeploymentSkeleton = {
   DeployedAt: new Date('asdasd'),
-  BranchName: { name: loading, url: new URL('/') },
+  BranchName: { name: loading, url: dummyUrl },
   Features: [{ name: loading, ticketNumber: loading }],
   People: [{ name: loading, team: undefined }],
   Teams: [{ name: loading }],
