@@ -70,7 +70,13 @@ Targets can be defined in the `package.json` or `projects.json`. Learn more [in 
 
 ## Production Deployment
 
-- TODO: https://stackoverflow.com/questions/67746885/prisma-client-did-not-initialize-yet-please-run-prisma-generate-and-try-to-i
+Build and run a docker container with the deployed application. Configuration is pulled from the `.env` file.
+
+```sh
+nx run queuear:deploy
+```
+
+Or alternatively, build and manually deploy the container/stack as needed
 
 ```sh
 nx run queuear:docker-build
