@@ -1,7 +1,7 @@
 # Prisma lib
 
-Building this lib copies the relevant contents to the `dist` directory. This artifact is
-then picked up by the docker build process task.
+Building this lib copies the relevant contents to the `dist` directory.
+This artifact is then picked up by the docker build process task.
 
 This also generates a README with a quick intro to the Prisma client, see the [node_modules](../../node_modules/@prisma/client/README.md)
 
@@ -11,6 +11,31 @@ This also generates a README with a quick intro to the Prisma client, see the [n
     </summary>
     [Read more about it here](https://github.com/prisma/prisma/issues/21241)
 <details>
+
+## Database seeding aka. Initial migration
+
+The database is automatically seeded using the `seed.js` script. This
+can be run with Nx,
+
+```sh
+nx run models:seed
+```
+
+## Adding tables and running a migration
+
+Update the `schema.prisma` file with the new model(s). Optionally, autoformat and autocomplete the relations with,
+
+```sh
+nx run models:format
+```
+
+Then when the schema is finished run,
+
+```sh
+nx run models:migrate
+```
+
+[Read more here](https://www.prisma.io/docs/orm/prisma-migrate/workflows/seeding)
 
 ## Related reading and docs
 

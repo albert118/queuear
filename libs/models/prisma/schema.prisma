@@ -10,11 +10,99 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Intended lifecycle example
+//  1. plan a new deployment > adds to this table
+//  2. another person adds to the deployment > adds to this table
+//  3. the deployment is triggered > based on the strategies selected a "deployment" is created in the same table
+//  4. current deployment finished! Delete it from the table and update EOL statuses
+//  5. repeat!
+model PlannedDeployments {
+  id        String   @id @default(uuid()) @db.VarChar(36)
+  createdAt DateTime @default(now())
+  personId  String   @db.VarChar(36)
+  person    Person   @relation(fields: [personId], references: [id])
 
-model plannedDeployment {
-  id               String @id @default(uuid())
-  createdAt        DateTime     @default(now())
-  person           String
-  feature          String
-  strategy         String
+  featureId String  @db.VarChar(36)
+  feature   Feature @relation(fields: [featureId], references: [id])
+  strategy  String
+
+  @@map("planned_deployments")
+}
+
+model Deployments {
+  id           String    @id @default(uuid()) @db.VarChar(36)
+  createdAt    DateTime  @default(now())
+  deployedAt   DateTime  @default(now())
+  completedAt  DateTime?
+  erroredAt    DateTime?
+  errorMessage String?
+  feature      String
+  strategy     String
+
+  // auto-navigation properties
+  PeopleInDeployment PeopleInDeployment[]
+
+  @@map("deployments")
+}
+
+model CurrentDeployment {
+  id          String    @id @default(uuid()) @db.VarChar(36)
+  createdAt   DateTime  @default(now())
+  deployedAt  DateTime  @default(now())
+  completedAt DateTime?
+  // people           String
+  // features         String
+  strategy    String
+  status      String
+
+  @@map("current_deployment")
+}
+
+model PeopleInDeployment {
+  personId     String      @db.VarChar(36)
+  person       Person      @relation(fields: [personId], references: [id])
+  deploymentId String      @db.VarChar(36)
+  deployment   Deployments @relation(fields: [deploymentId], references: [id])
+
+  @@id(name: "pepopleInDeploymentId", [personId, deploymentId])
+  @@map("people_in_deployment")
+}
+
+model Feature {
+  id           String @id @default(uuid()) @db.VarChar(36)
+  name         String @db.VarChar(250)
+  ticketNumber String @db.VarChar(10)
+
+  // not particularly useful, but can be used for easier data-cleanup
+  createdAt DateTime @default(now())
+
+  // auto-navigation properties
+  PlannedDeployments PlannedDeployments[]
+
+  @@map("feature")
+}
+
+model Team {
+  id        String   @id @default(uuid()) @db.VarChar(36)
+  createdAt DateTime @default(now())
+  name      String
+
+  // auto-navigation properties
+  People Person[]
+
+  @@map("team")
+}
+
+model Person {
+  id       String   @id @default(uuid()) @db.VarChar(36)
+  name     String
+  teamId   String   @db.VarChar(36)
+  team     Team     @relation(fields: [teamId], references: [id])
+  joinedAt DateTime @default(now())
+
+  // auto-navigation properties
+  PeopleInDeployment PeopleInDeployment[]
+  PlannedDeployments PlannedDeployments[]
+
+  @@map("person")
 }
