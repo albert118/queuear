@@ -1,6 +1,11 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// Splitting this file out into further files is not officially possible (yet)
+// there are some community options, but for this project I've just shoved everything
+// here instead of yet-another-node-module. This includes types, enums, etc. used in
+// any typescript throughout the application
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,10 +18,10 @@ datasource db {
 // Intended lifecycle example
 //  1. plan a new deployment > adds to this table
 //  2. another person adds to the deployment > adds to this table
-//  3. the deployment is triggered > based on the strategies selected a "deployment" is created in the same table
-//  4. current deployment finished! Delete it from the table and update EOL statuses
+//  3. the deployment is triggered > based on the strategies selected a "current_deployment" is created
+//  4. current deployment finished! Delete it from the "current_deployment" table and update EOL statuses
 //  5. repeat!
-model PlannedDeployments {
+model PlannedDeployment {
   id        String   @id @default(uuid()) @db.VarChar(36)
   createdAt DateTime @default(now())
   personId  String   @db.VarChar(36)
@@ -29,43 +34,37 @@ model PlannedDeployments {
   @@map("planned_deployments")
 }
 
-model Deployments {
+// A build will be triggered with the content from this deployment when the
+// build sever is available
+model Deployment {
   id           String    @id @default(uuid()) @db.VarChar(36)
   createdAt    DateTime  @default(now())
-  deployedAt   DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
   completedAt  DateTime?
   erroredAt    DateTime?
   errorMessage String?
-  feature      String
-  strategy     String
+  status       Status
+  strategy     Strategy
+
+  // latest ordered by  deployedAt is the current deployment
+  deployedAt DateTime?
 
   // auto-navigation properties
-  PeopleInDeployment PeopleInDeployment[]
+  ContentInDeployment ContentInDeployment[]
 
   @@map("deployments")
 }
 
-model CurrentDeployment {
-  id          String    @id @default(uuid()) @db.VarChar(36)
-  createdAt   DateTime  @default(now())
-  deployedAt  DateTime  @default(now())
-  completedAt DateTime?
-  // people           String
-  // features         String
-  strategy    String
-  status      String
+model ContentInDeployment {
+  personId     String     @db.VarChar(36)
+  person       Person     @relation(fields: [personId], references: [id])
+  featureId    String     @db.VarChar(36)
+  feature      Feature    @relation(fields: [featureId], references: [id])
+  deploymentId String     @db.VarChar(36)
+  deployment   Deployment @relation(fields: [deploymentId], references: [id])
 
-  @@map("current_deployment")
-}
-
-model PeopleInDeployment {
-  personId     String      @db.VarChar(36)
-  person       Person      @relation(fields: [personId], references: [id])
-  deploymentId String      @db.VarChar(36)
-  deployment   Deployments @relation(fields: [deploymentId], references: [id])
-
-  @@id(name: "pepopleInDeploymentId", [personId, deploymentId])
-  @@map("people_in_deployment")
+  @@id(name: "contentInDeploymentId", [personId, featureId, deploymentId])
+  @@map("content_in_deployment")
 }
 
 model Feature {
@@ -77,7 +76,8 @@ model Feature {
   createdAt DateTime @default(now())
 
   // auto-navigation properties
-  PlannedDeployments PlannedDeployments[]
+  PlannedDeployments  PlannedDeployment[]
+  ContentInDeployment ContentInDeployment[]
 
   @@map("feature")
 }
@@ -101,8 +101,25 @@ model Person {
   joinedAt DateTime @default(now())
 
   // auto-navigation properties
-  PeopleInDeployment PeopleInDeployment[]
-  PlannedDeployments PlannedDeployments[]
+  ContentInDeployment ContentInDeployment[]
+  PlannedDeployments  PlannedDeployment[]
 
   @@map("person")
+}
+
+///////////////////////////////////////////////////////////////////////////////////////
+// Enums
+///////////////////////////////////////////////////////////////////////////////////////
+
+enum Status {
+  ERROR
+  AVAILABLE
+  BUSY
+  PLANNED
+  PENDING
+}
+
+enum Strategy {
+  SINGLE
+  BATCHED
 }
