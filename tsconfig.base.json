@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@queuear/data": ["libs/data/index.ts"],
       "@queuear/models": ["libs/models/index.ts"]
     }
   },
