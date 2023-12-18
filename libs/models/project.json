@@ -35,6 +35,12 @@
       "options": {
         "lintFilePatterns": ["libs/models/**/*.ts"]
       }
+    },
+    "seed": {
+      "command": "ts-node prisma/seed.js",
+      "options": {
+        "cwd": "libs/models"
+      }
     }
   },
   "tags": []
