@@ -25,14 +25,14 @@ export default function Banner({
           <div className="text-container">
             {People.map((person, idx) => (
               <div key={idx} className="text">
-                {titleCase(person)}
+                {titleCase(person.name)}
               </div>
             ))}
           </div>
           <div className="text-container">
             {Features.map((feature, idx) => (
               <div key={idx} className="text">
-                {titleCase(feature)}
+                {titleCase(feature.name)}
               </div>
             ))}
           </div>

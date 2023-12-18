@@ -37,14 +37,14 @@ model PlannedDeployment {
 // A build will be triggered with the content from this deployment when the
 // build sever is available
 model Deployment {
-  id                  String    @id @default(uuid()) @db.VarChar(36)
-  createdAt           DateTime  @default(now())
-  updatedAt           DateTime  @updatedAt
-  completedAt         DateTime?
-  erroredAt           DateTime?
-  errorMessage        String?
-  serverStatus        ServerStatus
-  strategy            Strategy
+  id           String       @id @default(uuid()) @db.VarChar(36)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  completedAt  DateTime?
+  erroredAt    DateTime?
+  errorMessage String?
+  serverStatus ServerStatus
+  strategy     Strategy
 
   // our limit is ~50 but I can't remember off the top of my head honestly
   branchName String @db.VarChar(60)
