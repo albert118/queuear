@@ -46,6 +46,9 @@ model Deployment {
   status       Status
   strategy     Strategy
 
+  // our limit is ~50 but I can't remember off the top of my head honestly
+  branchName String @db.VarChar(60)
+
   // latest ordered by  deployedAt is the current deployment
   deployedAt DateTime?
 
