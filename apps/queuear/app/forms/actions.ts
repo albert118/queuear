@@ -1,10 +1,16 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { IPlannedDeployment } from '../data/types';
-import { updateDeployments } from '../data/seed';
+import { PlannedDeployment, PrismaClient } from '@queuear/models';
 
-export default async function submit(data: IPlannedDeployment) {
+const prisma = new PrismaClient();
+
+async function updateDeployments(newDeploymentToPlan: PlannedDeployment) {
+  await prisma.plannedDeployment.createMany({ data: [newDeploymentToPlan] });
+  console.log('updated planned deployments');
+}
+
+export default async function submit(data: PlannedDeployment) {
   if (!data) return;
 
   updateDeployments(data);
