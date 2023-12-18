@@ -1,4 +1,4 @@
-import { Status } from '@queuear/models';
+import { Status } from './enums';
 
 export interface IPlannedDeployment {
   person: string;
