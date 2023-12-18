@@ -3,7 +3,7 @@ import {
   PlannedDeploymentSummary,
   Environment,
 } from './types';
-import { Status, Strategy } from '@prisma/client';
+import { ServerStatus, Strategy } from '@prisma/client';
 
 const loading = 'loading...';
 const dummyUrl = new URL('https://http://localhost:4200/');
@@ -14,7 +14,7 @@ export const CurrentDeploymentSkeleton = {
   Features: [{ name: loading, ticketNumber: loading }],
   People: [{ name: loading, team: undefined }],
   Teams: [{ name: loading }],
-  DeploymentStatus: Status.PENDING,
+  DeploymentStatus: ServerStatus.DEPLOYING,
 } as CurrentDeployment;
 
 export const EnvironmentSkeleton = {

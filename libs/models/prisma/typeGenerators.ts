@@ -7,7 +7,7 @@ import {
   Feature,
   Deployment,
   ContentInDeployment,
-  Status,
+  ServerStatus,
 } from '@prisma/client';
 
 export async function generateDeployment(prisma: PrismaClient) {
@@ -17,7 +17,7 @@ export async function generateDeployment(prisma: PrismaClient) {
     id: 'current-deployment-1',
     deployedAt: new Date('2023-12-18T11:23:10.000Z'),
     strategy: Strategy.BATCHED,
-    status: Status.PLANNED,
+    serverStatus: ServerStatus.DEPLOYING,
     branchName: 'deployment/number-special-very-trackable',
   } as Deployment;
 

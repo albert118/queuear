@@ -4,7 +4,7 @@ import styles from './banner.module.scss';
 import StatusLabel from './statuslabel';
 import { Button } from './button';
 import { titleCase } from '../utils';
-import { CurrentDeployment, Status } from '@queuear/models';
+import { CurrentDeployment, ServerStatus } from '@queuear/models';
 
 export default function Banner({
   currentDeployment,
@@ -20,7 +20,7 @@ export default function Banner({
   return (
     <div className="wrapper">
       <div className={`${styles.banner} wrapper rounded shadow`}>
-        <StatusLabel className="banner--status" status={status} />
+        <StatusLabel className="banner--status" status={DeploymentStatus} />
         <div className={styles['banner--content']}>
           <div className="text-container">
             {People.map((person, idx) => (
@@ -38,7 +38,7 @@ export default function Banner({
           </div>
         </div>
 
-        {DeploymentStatus === Status.DEPLOYED && (
+        {DeploymentStatus === ServerStatus.DEPLOYED && (
           <Button primary={false} disabled={true}>
             Cancel
           </Button>

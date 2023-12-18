@@ -4,10 +4,10 @@ export default function StatusLabel({ status, className }) {
   return (
     <div
       className={`${className ?? ''} ${styles['status-label']} ${
-        styles[status.name.toLowerCase()]
+        styles[status.toString().toLowerCase()]
       } rounded shadow`}
     >
-      <span className="text">{status.name}</span>
+      <span className="text">{status.toString()}</span>
     </div>
   );
 }
