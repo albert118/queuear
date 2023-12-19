@@ -14,7 +14,6 @@ export default async function usePlannedDeployments(): Promise<
     )) as PlannedDeploymentWithRelations[];
     const grouped = groupDeployments(allPlannedDeployments);
 
-    console.log(grouped);
     return grouped;
 }
 
