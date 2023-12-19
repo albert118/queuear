@@ -10,7 +10,8 @@ This also generates a README with a quick intro to the Prisma client, see the [n
         On using prisma with docker
     </summary>
     [Read more about it here](https://github.com/prisma/prisma/issues/21241)
-<details>
+</details>
+
 
 ## Database seeding aka. Initial migration
 
