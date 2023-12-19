@@ -25,3 +25,12 @@ Dockerfile.*
 .editorconfig
 .jest.config.ts
 .jest.preset.ts
+.prettierrc
+.prettierignore
+.eslintrc.json
+.eslintignore
+
+# repo assets
+*.png
+*.jpg
+*.jpeg
