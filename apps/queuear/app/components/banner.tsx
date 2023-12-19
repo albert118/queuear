@@ -23,18 +23,20 @@ export default function Banner({
         />
         <div className={styles['banner--content']}>
           <div className="text-container">
-            {People.map((person, idx) => (
-              <div key={idx} className="text">
-                {titleCase(person.name)}
-              </div>
-            ))}
+            {People &&
+              People.map((person, idx) => (
+                <div key={idx} className="text">
+                  {titleCase(person.name)}
+                </div>
+              ))}
           </div>
           <div className="text-container">
-            {Features.map((feature, idx) => (
-              <div key={idx} className="text">
-                {titleCase(feature.name)}
-              </div>
-            ))}
+            {Features &&
+              Features.map((feature, idx) => (
+                <div key={idx} className="text">
+                  {titleCase(feature.name)}
+                </div>
+              ))}
           </div>
         </div>
 
@@ -45,15 +47,15 @@ export default function Banner({
         )}
       </div>
       <label className="small-label">
-        Deployed at: {DeployedAt.toString()}
+        Deployed at: {DeployedAt && DeployedAt.toString()}
       </label>
       <label className="small-label">
         Branch:&nbsp;
         <a
-          href={BranchName.url?.toString() ?? defaultExampleBranchUrl}
+          href={BranchName?.url?.toString() ?? defaultExampleBranchUrl}
           style={{ color: 'lightgreen' }}
         >
-          {BranchName.name}
+          {BranchName && BranchName.name}
         </a>
       </label>
     </div>

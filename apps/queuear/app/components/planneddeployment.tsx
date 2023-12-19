@@ -8,6 +8,8 @@ export function PlannedDeployment({
 }) {
   const { Person, Feature } = plannedDeployment;
 
+  if (!(Person && Feature)) return <></>;
+
   return (
     <div className={`${styles['list-item']} wrapper rounded`}>
       <span id="person" className="text">
