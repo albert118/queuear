@@ -1,12 +1,14 @@
 import { PrismaClient } from '@queuear/models';
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  log: ['query', 'info', 'warn', 'error'],
+});
 
 async function getCurrentDeployment() {
   const result = await prisma.deployment.findFirst({
     where: {
       deployedAt: { not: null },
-      completedAt: { not: null },
+      completedAt: null,
     },
     orderBy: {
       deployedAt: { sort: 'desc' },
@@ -18,5 +20,5 @@ async function getCurrentDeployment() {
 
 export async function GET() {
   const currentDeployment = await getCurrentDeployment();
-  return new Response(JSON.stringify(currentDeployment));
+  return Response.json(currentDeployment);
 }
