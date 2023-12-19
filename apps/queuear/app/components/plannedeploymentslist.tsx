@@ -23,7 +23,7 @@ export async function PlannedDeploymentsList() {
 function DeploymentGroup({ group }: { group: PlannedDeploymentSummary[] }) {
   const groupStrategy = group[0].Strategy;
   return (
-    <div className={`${styles[groupStrategy]} rounded`}>
+    <div className={`${styles[groupStrategy.toLowerCase()]} rounded`}>
       {group.map((planned) => (
         <PlannedDeployment key={planned.Strategy} plannedDeployment={planned} />
       ))}
