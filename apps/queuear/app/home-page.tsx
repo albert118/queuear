@@ -5,21 +5,16 @@ import Footer from './components/footer';
 import { PlannedDeploymentsList } from './components/plannedeploymentslist';
 import { AddAction } from './components/addaction';
 
-import {
-  CurrentDeployment,
-  PlannedDeploymentSummary,
-  Environment,
-} from '@queuear/models';
+import { PlannedDeploymentSummary, Environment } from '@queuear/models';
+import { useEnvironmentInfo } from '@queuear/data';
 
-export default function HomePage({
-  environment,
-  currentDeployment,
+export default async function HomePage({
   deploymentGroups,
 }: {
-  environment: Environment;
-  currentDeployment: CurrentDeployment;
   deploymentGroups: PlannedDeploymentSummary[][];
 }) {
+  const environment = (await useEnvironmentInfo()) as Environment;
+
   return (
     <div className="wrapper">
       <div className="container auto-center">
@@ -28,7 +23,7 @@ export default function HomePage({
         <AddAction />
 
         <h2>Current Deployment</h2>
-        <Banner currentDeployment={currentDeployment} />
+        <Banner />
 
         <h2>Planned Deployments</h2>
         <PlannedDeploymentsList deploymentGroups={deploymentGroups} />

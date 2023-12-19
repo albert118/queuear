@@ -1,21 +1,11 @@
+import { PlannedDeploymentSummary } from '@queuear/models';
 import HomePage from './home-page';
 
-import {
-  useCurrentDeployment,
-  usePlannedDeployments,
-  useEnvironmentInfo,
-} from '@queuear/data';
+import { usePlannedDeployments } from '@queuear/data';
 
 export default async function Page() {
-  const currentDeployment = await useCurrentDeployment();
-  const plannedDeployments = await usePlannedDeployments();
-  const environmentInfo = await useEnvironmentInfo();
+  const plannedDeployments =
+    (await usePlannedDeployments()) as PlannedDeploymentSummary[][];
 
-  return (
-    <HomePage
-      currentDeployment={currentDeployment}
-      environment={environmentInfo}
-      deploymentGroups={plannedDeployments}
-    />
-  );
+  return <HomePage deploymentGroups={plannedDeployments} />;
 }

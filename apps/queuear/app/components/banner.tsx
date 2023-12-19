@@ -2,17 +2,15 @@ import styles from './banner.module.scss';
 import StatusLabel from './statuslabel';
 import { Button } from './button';
 import { titleCase } from '../utils';
-import { CurrentDeployment, ServerStatus } from '@queuear/models';
+import { ServerStatus } from '@queuear/models';
+import { useCurrentDeployment } from '@queuear/data';
 
-const defaultExampleBranchUrl = 'https://github.com/albert118/queuear/branches';
-
-export default function Banner({
-  currentDeployment,
-}: {
-  currentDeployment: CurrentDeployment;
-}) {
-  const { DeploymentStatus, DeployedAt, BranchName, Features, People } =
+export default async function Banner() {
+  const currentDeployment = await useCurrentDeployment();
+  const { DeploymentStatus, Features, People, DeployedAt, BranchName } =
     currentDeployment;
+
+  if (!currentDeployment) return <div className="wrapper"></div>;
 
   return (
     <div className="wrapper">
@@ -23,20 +21,18 @@ export default function Banner({
         />
         <div className={styles['banner--content']}>
           <div className="text-container">
-            {People &&
-              People.map((person, idx) => (
-                <div key={idx} className="text">
-                  {titleCase(person.name)}
-                </div>
-              ))}
+            {People.map((person, idx) => (
+              <div key={idx} className="text">
+                {titleCase(person.name)}
+              </div>
+            ))}
           </div>
           <div className="text-container">
-            {Features &&
-              Features.map((feature, idx) => (
-                <div key={idx} className="text">
-                  {titleCase(feature.name)}
-                </div>
-              ))}
+            {Features.map((feature, idx) => (
+              <div key={idx} className="text">
+                {titleCase(feature.name)}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -47,14 +43,11 @@ export default function Banner({
         )}
       </div>
       <label className="small-label">
-        Deployed at: {DeployedAt && DeployedAt.toString()}
+        Deployed at: {DeployedAt.toLocaleString('en-AU')}
       </label>
       <label className="small-label">
         Branch:&nbsp;
-        <a
-          href={BranchName?.url?.toString() ?? defaultExampleBranchUrl}
-          style={{ color: 'lightgreen' }}
-        >
+        <a href={BranchName.url.toString()} style={{ color: 'lightgreen' }}>
           {BranchName && BranchName.name}
         </a>
       </label>

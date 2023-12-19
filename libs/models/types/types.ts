@@ -1,4 +1,4 @@
-import { Status, Strategy } from '@prisma/client';
+import { ServerStatus, Strategy } from '@prisma/client';
 
 // flyweights / display orientated classes based on the schema models
 
@@ -8,7 +8,7 @@ export type CurrentDeployment = {
   Features: FeatureSummary[];
   People: PersonDetail[];
   Teams: TeamDetail[];
-  DeploymentStatus: Status;
+  DeploymentStatus: ServerStatus;
 };
 
 export type FeatureSummary = {
@@ -38,5 +38,5 @@ export type Environment = {
 
 export type GitHubBranch = {
   name: string;
-  url: URL | undefined;
+  url: URL;
 };
