@@ -10,8 +10,6 @@ export default async function Banner() {
   const { DeploymentStatus, Features, People, DeployedAt, BranchName } =
     currentDeployment;
 
-  if (!currentDeployment) return <div className="wrapper"></div>;
-
   return (
     <div className="wrapper">
       <div className={`${styles.banner} wrapper rounded shadow`}>

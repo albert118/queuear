@@ -1,7 +1,8 @@
 import { useFetch } from '../fetch/useFetch';
 import { Environment } from '@queuear/models';
 
-export default function useEnvironmentInfo(): Promise<Environment> {
+export default async function useEnvironmentInfo(): Promise<Environment> {
   const { get } = useFetch();
-  return get('api/environment');
+  const environment = (await get('api/environment')) as Environment;
+  return environment;
 }

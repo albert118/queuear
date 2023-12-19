@@ -1,11 +1,30 @@
-import { PlannedDeploymentSummary } from '@queuear/models';
-import HomePage from './home-page';
+import Greeter from './components/greeter';
+import Banner from './components/banner';
+import Footer from './components/footer';
 
-import { usePlannedDeployments } from '@queuear/data';
+import { PlannedDeploymentsList } from './components/plannedeploymentslist';
+import { AddAction } from './components/addaction';
+
+import { useEnvironmentInfo } from '@queuear/data';
 
 export default async function Page() {
-  const plannedDeployments =
-    (await usePlannedDeployments()) as PlannedDeploymentSummary[][];
+  const environment = await useEnvironmentInfo();
 
-  return <HomePage deploymentGroups={plannedDeployments} />;
+  return (
+    <div className="wrapper">
+      <div className="container auto-center">
+        <Greeter {...environment} />
+
+        <AddAction />
+
+        <h2>Current Deployment</h2>
+        <Banner />
+
+        <h2>Planned Deployments</h2>
+        <PlannedDeploymentsList />
+
+        <Footer />
+      </div>
+    </div>
+  );
 }
