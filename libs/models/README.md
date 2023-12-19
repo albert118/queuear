@@ -12,7 +12,6 @@ This also generates a README with a quick intro to the Prisma client, see the [n
     [Read more about it here](https://github.com/prisma/prisma/issues/21241)
 </details>
 
-
 ## Database seeding aka. Initial migration
 
 The database is automatically seeded using the `seed.js` script. This

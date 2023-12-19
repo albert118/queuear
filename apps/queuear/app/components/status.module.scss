@@ -1,23 +1,23 @@
 .status-label {
-  padding: 1.2rem 0.6rem;
+    padding: 1.2rem 0.6rem;
 
-  & > span {
-    color: rgb(var(--text-high-contrast-rgb)) !important;
-  }
+    & > span {
+        color: rgb(var(--text-high-contrast-rgb)) !important;
+    }
 }
 
 .available {
-  background-color: rgb(var(--info-rgb));
+    background-color: rgb(var(--info-rgb));
 }
 
 .deployed {
-  background-color: rgb(var(--secondary-rgb));
+    background-color: rgb(var(--secondary-rgb));
 }
 
 .deploying {
-  background-color: rgb(var(--note-rgb));
+    background-color: rgb(var(--note-rgb));
 }
 
 .error {
-  background-color: rgb(var(--error-rgb));
+    background-color: rgb(var(--error-rgb));
 }

@@ -8,23 +8,23 @@ import { AddAction } from './components/addaction';
 import { useEnvironmentInfo } from '@queuear/data';
 
 export default async function Page() {
-  const environment = await useEnvironmentInfo();
+    const environment = await useEnvironmentInfo();
 
-  return (
-    <div className="wrapper">
-      <div className="container auto-center">
-        <Greeter {...environment} />
+    return (
+        <div className='wrapper'>
+            <div className='container auto-center'>
+                <Greeter {...environment} />
 
-        <AddAction />
+                <AddAction />
 
-        <h2>Current Deployment</h2>
-        <Banner />
+                <h2>Current Deployment</h2>
+                <Banner />
 
-        <h2>Planned Deployments</h2>
-        <PlannedDeploymentsList />
+                <h2>Planned Deployments</h2>
+                <PlannedDeploymentsList />
 
-        <Footer />
-      </div>
-    </div>
-  );
+                <Footer />
+            </div>
+        </div>
+    );
 }

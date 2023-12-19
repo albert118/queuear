@@ -1,8 +1,8 @@
 version: '3.9'
 
 services:
-  queuear:
-    container_name: queuear
-    restart: unless-stopped
-    ports:
-      - '7321:4200'
+    queuear:
+        container_name: queuear
+        restart: unless-stopped
+        ports:
+            - '7321:4200'

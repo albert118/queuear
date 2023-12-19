@@ -19,9 +19,9 @@
 
 ## 👑 Features
 
-- view what code is currently deployed and by who
-- plan upcoming deployments by joining a queue
-- join an existing deployment group or or request a single deployment
+-   view what code is currently deployed and by who
+-   plan upcoming deployments by joining a queue
+-   join an existing deployment group or or request a single deployment
 
 ## 📌 Getting started
 
@@ -64,4 +64,18 @@ nx run queuear:docker-build
 docker run --env-file ./.env -p 4200:4200 -it queuear
 # or
 docker compose up
+```
+
+### Autoformatting and linting
+
+Nx supports formatting via prettier. This can be run across the entire solution withm
+
+```sh
+nx format:write --all
+```
+
+Linting also configured and can be run across all projects by,
+
+```sh
+nx run-many -t lint
 ```

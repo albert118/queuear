@@ -1,74 +1,74 @@
 {
-  "name": "queuear",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/queuear",
-  "projectType": "application",
-  "targets": {
-    "build": {
-      "executor": "@nx/next:build",
-      "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
-      "generatePackageJson": true,
-      "options": {
-        "outputPath": "dist/apps/queuear"
-      },
-      "configurations": {
-        "development": {
-          "outputPath": "apps/queuear"
+    "name": "queuear",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/queuear",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nx/next:build",
+            "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
+            "generatePackageJson": true,
+            "options": {
+                "outputPath": "dist/apps/queuear"
+            },
+            "configurations": {
+                "development": {
+                    "outputPath": "apps/queuear"
+                },
+                "production": {}
+            }
         },
-        "production": {}
-      }
-    },
-    "serve": {
-      "executor": "@nx/next:server",
-      "defaultConfiguration": "development",
-      "options": {
-        "buildTarget": "queuear:build",
-        "dev": true
-      },
-      "configurations": {
-        "development": {
-          "buildTarget": "queuear:build:development",
-          "dev": true
+        "serve": {
+            "executor": "@nx/next:server",
+            "defaultConfiguration": "development",
+            "options": {
+                "buildTarget": "queuear:build",
+                "dev": true
+            },
+            "configurations": {
+                "development": {
+                    "buildTarget": "queuear:build:development",
+                    "dev": true
+                },
+                "production": {
+                    "buildTarget": "queuear:build:production",
+                    "dev": false
+                }
+            }
         },
-        "production": {
-          "buildTarget": "queuear:build:production",
-          "dev": false
+        "export": {
+            "executor": "@nx/next:export",
+            "options": {
+                "buildTarget": "queuear:build:production"
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "apps/queuear/jest.config.ts"
+            }
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/queuear/**/*.{ts,tsx,js,jsx}"]
+            }
+        },
+        "docker-build": {
+            "dependsOn": ["build"],
+            "command": "docker build -f apps/queuear/Dockerfile . -t queuear"
+        },
+        "deploy": {
+            "executor": "nx:run-commands",
+            "dependsOn": ["docker-build"],
+            "outputs": [],
+            "options": {
+                "command": "docker run --env-file ./.env -p 4200:4200 -i queuear"
+            }
         }
-      }
     },
-    "export": {
-      "executor": "@nx/next:export",
-      "options": {
-        "buildTarget": "queuear:build:production"
-      }
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/queuear/jest.config.ts"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/queuear/**/*.{ts,tsx,js,jsx}"]
-      }
-    },
-    "docker-build": {
-      "dependsOn": ["build"],
-      "command": "docker build -f apps/queuear/Dockerfile . -t queuear"
-    },
-    "deploy": {
-      "executor": "nx:run-commands",
-      "dependsOn": ["docker-build"],
-      "outputs": [],
-      "options": {
-        "command": "docker run --env-file ./.env -p 4200:4200 -i queuear"
-      }
-    }
-  },
-  "tags": []
+    "tags": []
 }
