@@ -20,7 +20,10 @@ export default function Banner({
   return (
     <div className="wrapper">
       <div className={`${styles.banner} wrapper rounded shadow`}>
-        <StatusLabel className="banner--status" status={DeploymentStatus} />
+        <StatusLabel
+          className="banner--status"
+          status={titleCase(DeploymentStatus)}
+        />
         <div className={styles['banner--content']}>
           <div className="text-container">
             {People.map((person, idx) => (
@@ -48,7 +51,7 @@ export default function Banner({
         Deployed at: {DeployedAt.toString()}
       </label>
       <label className="small-label">
-        Branch:&nbsp
+        Branch:&nbsp;
         <a
           href={BranchName.url?.toString() ?? defaultExampleBranchUrl}
           style={{ color: 'lightgreen' }}

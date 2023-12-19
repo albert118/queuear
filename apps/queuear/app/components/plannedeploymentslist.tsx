@@ -3,6 +3,7 @@
 import { PlannedDeployment } from './planneddeployment';
 import styles from './list.module.scss';
 import { PlannedDeploymentSummary } from '@queuear/models';
+import { titleCase } from '../utils';
 
 export function PlannedDeploymentsList({
   deploymentGroups,
@@ -27,7 +28,7 @@ function DeploymentGroup({ group }: { group: PlannedDeploymentSummary[] }) {
       {group.map((planned) => (
         <PlannedDeployment key={planned.Strategy} plannedDeployment={planned} />
       ))}
-      <label className="small-label">{groupStrategy}</label>
+      <label className="small-label">{titleCase(groupStrategy)}</label>
     </div>
   );
 }

@@ -10,14 +10,14 @@
   background-color: rgb(var(--info-rgb));
 }
 
-.busy {
-  background-color: rgb(var(--warn-rgb));
+.deployed {
+  background-color: rgb(var(--secondary-rgb));
 }
 
-.planned {
+.deploying {
   background-color: rgb(var(--note-rgb));
 }
 
-.pending {
-  background-color: rgb(var(--note-rgb));
+.error {
+  background-color: rgb(var(--error-rgb));
 }
