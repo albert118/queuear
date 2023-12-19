@@ -1,23 +1,7 @@
-'use client';
-
-import { useEffect, useState } from 'react';
 import { useFetch } from '../fetch/useFetch';
-import { Environment, EnvironmentSkeleton } from '@queuear/models';
+import { Environment } from '@queuear/models';
 
-export default function useEnvironmentInfo(): {
-  environmentInfo: Environment;
-} {
-  const [environmentInfo, setEnvironmentInfo] =
-    useState<Environment>(EnvironmentSkeleton);
+export default async function useEnvironmentInfo(): Promise<Environment> {
   const { get } = useFetch();
-
-  useEffect(() => {
-    get('api/environment')
-      .then((data) => setEnvironmentInfo(data))
-      .catch(() => {});
-  });
-
-  return {
-    environmentInfo,
-  };
+  return get('api/environment');
 }
