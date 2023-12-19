@@ -1,61 +1,54 @@
 {
-  "name": "models",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
-  "targets": {
-    "build": {
-      "executor": "nx:run-commands",
-      "dependsOn": ["format", "clean", "generate-types"],
-      "options": {
-        "cwd": "libs/models",
-        "command": "mkdir -p ../../dist/libs/models/prisma && cp prisma/* ../../dist/libs/models/prisma"
-      }
+    "name": "models",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "library",
+    "targets": {
+        "build": {
+            "executor": "nx:run-commands",
+            "dependsOn": ["format", "clean", "generate-types"],
+            "options": {
+                "cwd": "libs/models",
+                "command": "mkdir -p ../../dist/libs/models/prisma && cp prisma/* ../../dist/libs/models/prisma"
+            }
+        },
+        "clean": {
+            "executor": "nx:run-commands",
+            "options": {
+                "cwd": "libs/models",
+                "command": "[ -d '../../dist/libs/models' ] && rm -rdv ../../dist/libs/models || echo 'nothing to clean - skipping models clean task'"
+            }
+        },
+        "prisma": {
+            "command": "prisma",
+            "options": {
+                "cwd": "libs/models"
+            }
+        },
+        "migrate": {
+            "command": "prisma migrate dev",
+            "options": {
+                "cwd": "libs/models"
+            }
+        },
+        "generate-types": {
+            "command": "prisma generate",
+            "options": {
+                "cwd": "libs/models"
+            }
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["libs/models/**/*.ts"]
+            }
+        },
+        "seed": {
+            "command": "npx ts-node prisma/seed.ts",
+            "options": {
+                "cwd": "libs/models"
+            }
+        }
     },
-    "clean": {
-      "executor": "nx:run-commands",
-      "options": {
-        "cwd": "libs/models",
-        "command": "[ -d '../../dist/libs/models' ] && rm -rdv ../../dist/libs/models || echo 'nothing to clean - skipping models clean task'"
-      }
-    },
-    "prisma": {
-      "command": "prisma",
-      "options": {
-        "cwd": "libs/models"
-      }
-    },
-    "migrate": {
-      "command": "prisma migrate dev",
-      "options": {
-        "cwd": "libs/models"
-      }
-    },
-    "generate-types": {
-      "command": "prisma generate",
-      "options": {
-        "cwd": "libs/models"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/models/**/*.ts"]
-      }
-    },
-    "format": {
-      "command": "prisma format",
-      "dependsOn": ["lint"],
-      "options": {
-        "cwd": "libs/models"
-      }
-    },
-    "seed": {
-      "command": "npx ts-node prisma/seed.ts",
-      "options": {
-        "cwd": "libs/models"
-      }
-    }
-  },
-  "tags": []
+    "tags": []
 }
