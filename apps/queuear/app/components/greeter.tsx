@@ -1,11 +1,9 @@
-'use client';
-
 export default function Greeter({
   welcomeMessage,
   name,
 }: {
-  welcomeMessage: string;
-  name: string;
+  welcomeMessage?: string;
+  name?: string;
 }) {
   return (
     <div id="welcome">

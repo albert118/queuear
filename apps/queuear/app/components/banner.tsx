@@ -1,10 +1,10 @@
-'use client';
-
 import styles from './banner.module.scss';
 import StatusLabel from './statuslabel';
 import { Button } from './button';
 import { titleCase } from '../utils';
 import { CurrentDeployment, ServerStatus } from '@queuear/models';
+
+const defaultExampleBranchUrl = 'https://github.com/albert118/queuear/branches';
 
 export default function Banner({
   currentDeployment,
@@ -13,9 +13,6 @@ export default function Banner({
 }) {
   const { DeploymentStatus, DeployedAt, BranchName, Features, People } =
     currentDeployment;
-
-  const defaultExampleBranchUrl =
-    'https://github.com/albert118/queuear/branches';
 
   return (
     <div className="wrapper">

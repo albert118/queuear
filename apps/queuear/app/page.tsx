@@ -1,6 +1,5 @@
-'use client';
-
 import HomePage from './home-page';
+
 import {
   useCurrentDeployment,
   usePlannedDeployments,
@@ -8,9 +7,9 @@ import {
 } from '@queuear/data';
 
 export default async function Page() {
-  const { currentDeployment } = useCurrentDeployment();
-  const { plannedDeployments } = usePlannedDeployments();
-  const { environmentInfo } = useEnvironmentInfo();
+  const currentDeployment = await useCurrentDeployment();
+  const plannedDeployments = await usePlannedDeployments();
+  const environmentInfo = await useEnvironmentInfo();
 
   return (
     <HomePage

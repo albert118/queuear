@@ -1,5 +1,3 @@
-'use client';
-
 import { PlannedDeployment } from './planneddeployment';
 import styles from './list.module.scss';
 import { PlannedDeploymentSummary } from '@queuear/models';

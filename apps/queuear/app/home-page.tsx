@@ -1,5 +1,3 @@
-'use client';
-
 import Greeter from './components/greeter';
 import Banner from './components/banner';
 import Footer from './components/footer';
