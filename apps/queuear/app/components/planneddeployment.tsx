@@ -1,5 +1,6 @@
 import { PlannedDeploymentSummary } from '@queuear/models';
 import styles from './list.module.scss';
+import { titleCase } from '../utils';
 
 export function PlannedDeployment({
   plannedDeployment,
@@ -16,13 +17,14 @@ export function PlannedDeployment({
         <label htmlFor="person" className="small-label">
           Person
         </label>
-        {Person.name}&nbsp;{Person.team !== undefined ?? `(${Person.team})`}
+        {titleCase(Person.name)}&nbsp;
+        {Person.team !== undefined ?? `(${titleCase(Person.team)})`}
       </span>
       <span id="feature" className="text">
         <label htmlFor="feature" className="small-label">
           Feature
         </label>
-        {Feature.ticketNumber} - {Feature.name}
+        {Feature.ticketNumber.toUpperCase()} | {Feature.name.toLowerCase()}
       </span>
     </div>
   );
