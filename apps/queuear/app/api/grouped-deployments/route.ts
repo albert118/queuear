@@ -3,7 +3,9 @@ import { PrismaClient } from '@queuear/models';
 const prisma = new PrismaClient();
 
 async function getPlannedDeployments() {
-  const result = await prisma.plannedDeployment.findMany();
+  const result = await prisma.plannedDeployment.findMany({
+    include: { feature: true, person: { include: { team: true } } },
+  });
   return result;
 }
 

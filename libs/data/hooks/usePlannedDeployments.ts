@@ -1,5 +1,9 @@
 import { useFetch } from '../fetch/useFetch';
-import { PlannedDeployment, PlannedDeploymentSummary } from '@queuear/models';
+import {
+  PlannedDeploymentSummary,
+  PlannedDeploymentSummaryFromEntity,
+  PlannedDeploymentWithRelations,
+} from '@queuear/models';
 
 export default async function usePlannedDeployments(): Promise<
   PlannedDeploymentSummary[][]
@@ -7,14 +11,15 @@ export default async function usePlannedDeployments(): Promise<
   const { get } = useFetch();
   const allPlannedDeployments = (await get(
     'api/grouped-deployments'
-  )) as PlannedDeployment[];
+  )) as PlannedDeploymentWithRelations[];
   const grouped = groupDeployments(allPlannedDeployments);
 
+  console.log(grouped);
   return grouped;
 }
 
 function groupDeployments(
-  plannedDeployments: PlannedDeployment[]
+  plannedDeployments: PlannedDeploymentWithRelations[]
 ): PlannedDeploymentSummary[][] {
   const groups = [] as PlannedDeploymentSummary[][];
   let nextGroup = [] as PlannedDeploymentSummary[];
@@ -28,7 +33,7 @@ function groupDeployments(
       nextGroup = [];
     }
 
-    nextGroup.push(planned as unknown as PlannedDeploymentSummary);
+    nextGroup.push(PlannedDeploymentSummaryFromEntity(planned));
   }
 
   groups.push(nextGroup);
