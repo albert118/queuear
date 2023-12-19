@@ -1,8 +1,6 @@
 import { PrismaClient } from '@queuear/models';
 
-const prisma = new PrismaClient({
-  log: ['query', 'info', 'warn', 'error'],
-});
+const prisma = new PrismaClient();
 
 async function getCurrentDeployment() {
   const result = await prisma.deployment.findFirst({

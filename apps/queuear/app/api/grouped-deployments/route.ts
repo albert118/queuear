@@ -4,9 +4,7 @@ import {
   PrismaClient,
 } from '@queuear/models';
 
-const prisma = new PrismaClient({
-  log: ['query', 'info', 'warn', 'error'],
-});
+const prisma = new PrismaClient();
 
 async function getPlannedDeployments() {
   const result = await prisma.plannedDeployment.findMany();

@@ -6,5 +6,5 @@ export async function GET(request: Request) {
     welcomeMessage: 'Welcome!',
   } as Environment;
 
-  return new Response(JSON.stringify(environmentInfo));
+  return Response.json(environmentInfo);
 }
