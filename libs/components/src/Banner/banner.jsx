@@ -1,7 +1,6 @@
 import styles from './banner.module.scss';
-import StatusLabel from './statuslabel';
-import Button from './button';
-import { titleCase } from './utils';
+import { StatusLabel, Button } from '@queuear/components';
+import { titleCase } from '../utils';
 import { ServerStatus } from '@queuear/models';
 import { useCurrentDeployment } from '@queuear/data';
 

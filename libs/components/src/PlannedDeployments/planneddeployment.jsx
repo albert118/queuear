@@ -1,5 +1,5 @@
 import styles from './list.module.scss';
-import { titleCase } from './utils';
+import { titleCase } from '../utils';
 
 // plannedDeployment: PlannedDeploymentSummary
 export default function PlannedDeployment({ plannedDeployment }) {

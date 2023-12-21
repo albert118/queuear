@@ -1,12 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import Button from './button';
-import FormModal from './formmodal';
+import { Button, FormModal } from '@queuear/components';
 import styles from './actions.module.scss';
-import { propagateProps } from './utils';
 
-export default function Actions({ children }) {
+export default function Actions({ ActionForm }) {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
 
@@ -16,7 +14,7 @@ export default function Actions({ children }) {
                 Add
             </Button>
             <FormModal open={open} handleClose={() => setOpen(false)}>
-                {propagateProps(children, { onClose: () => setOpen(false) })}
+                <ActionForm onClose={() => setOpen(false)} />
             </FormModal>
         </div>
     );

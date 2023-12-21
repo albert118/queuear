@@ -1,7 +1,7 @@
 import { usePlannedDeployments } from '@queuear/data';
 import styles from './list.module.scss';
 import PlannedDeployment from './planneddeployment';
-import { titleCase } from './utils';
+import { titleCase } from '../utils';
 
 export default async function PlannedDeployments() {
     // each child is a list of planned deployments

@@ -1,5 +1,5 @@
 import styles from './form.module.scss';
-import Button from './button';
+import Button from './Button/button';
 
 export default function Form({ children, onSubmit, onComplete, formData }) {
     const _onCancel = () => {
