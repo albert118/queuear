@@ -1,10 +1,9 @@
-import { PlannedDeployment } from './planneddeployment';
-import styles from './list.module.scss';
-import { PlannedDeploymentSummary } from '@queuear/models';
-import { titleCase } from '../utils';
 import { usePlannedDeployments } from '@queuear/data';
+import styles from './list.module.scss';
+import PlannedDeployment from './planneddeployment';
+import { titleCase } from './utils';
 
-export async function PlannedDeploymentsList() {
+export default async function PlannedDeployments() {
     // each child is a list of planned deployments
     // these already grouped by strategy to simplify display concerns
     const deploymentGroups = await usePlannedDeployments();
@@ -20,7 +19,8 @@ export async function PlannedDeploymentsList() {
     );
 }
 
-function DeploymentGroup({ group }: { group: PlannedDeploymentSummary[] }) {
+// group: PlannedDeploymentSummary[]
+function DeploymentGroup({ group }) {
     const groupStrategy = group[0].Strategy;
     return (
         <div className={`${styles[groupStrategy.toLowerCase()]} rounded`}>

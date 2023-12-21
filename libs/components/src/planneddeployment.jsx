@@ -1,12 +1,8 @@
-import { PlannedDeploymentSummary } from '@queuear/models';
 import styles from './list.module.scss';
-import { titleCase } from '../utils';
+import { titleCase } from './utils';
 
-export function PlannedDeployment({
-    plannedDeployment
-}: {
-    plannedDeployment: PlannedDeploymentSummary;
-}) {
+// plannedDeployment: PlannedDeploymentSummary
+export default function PlannedDeployment({ plannedDeployment }) {
     const { Person, Feature } = plannedDeployment;
 
     if (!(Person && Feature)) return <></>;

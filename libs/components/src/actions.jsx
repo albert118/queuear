@@ -1,21 +1,22 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from './button';
-import { FormModal } from './formmodal';
-import { AddDeployment } from '../forms/adddeployment';
+import Button from './button';
+import FormModal from './formmodal';
+import styles from './actions.module.scss';
+import { propagateProps } from './utils';
 
-export function AddAction() {
+export default function Actions({ children }) {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
 
     return (
-        <div className='actions wrapper rounded'>
+        <div className={`${styles['actions-banner']} rounded`}>
             <Button primary={true} onClick={handleOpen}>
                 Add
             </Button>
             <FormModal open={open} handleClose={() => setOpen(false)}>
-                <AddDeployment onClose={() => setOpen(false)} />
+                {propagateProps(children, { onClose: () => setOpen(false) })}
             </FormModal>
         </div>
     );

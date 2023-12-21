@@ -1,0 +1,17 @@
+.greeter {
+    margin: 2.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.6rem;
+
+    & > span {
+        color: rgb(var(--text-rgb));
+        display: block;
+        font-size: 1.875rem;
+        font-weight: 300;
+        line-height: 2.25rem;
+        margin-bottom: 0.5rem;
+        flex: 60;
+    }
+}

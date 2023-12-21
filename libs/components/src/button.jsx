@@ -1,6 +1,8 @@
+'use client';
+
 import styles from './button.module.scss';
 
-export function Button({ primary, ...additionalProps }) {
+export default function Button({ primary, ...additionalProps }) {
     const _primary = primary ?? true;
     const color = _primary ? 'primary' : 'secondary';
 

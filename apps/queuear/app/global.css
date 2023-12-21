@@ -1,11 +1,14 @@
 body {
-    /* colors */
-    --primary-rgb: 219, 39, 119;
+    /* branding colors */
+    --primary-rgb: 222, 93, 93;
     --secondary-rgb: 70, 128, 128;
+    --tertiary-rgb: 219, 39, 119;
+    /* accents + utility colors */
     --info-rgb: 13, 202, 240;
     --warn-rgb: 248, 163, 6;
     --error-rgb: 190, 47, 47;
     --note-rgb: 64, 64, 143;
+    /* contrast colors */
     --background: 13, 17, 23;
     --background-dark: 8, 11, 18;
     --text-rgb: 177, 184, 192;
@@ -35,6 +38,7 @@ h1,
 h2,
 p,
 pre {
+    color: rgb(var(--text-high-contrast-rgb));
     margin: 0;
 }
 *,
@@ -108,7 +112,8 @@ h2 {
 }
 
 .container {
-    max-width: 768px;
+    min-width: 768px;
+    max-width: 60%;
     padding-bottom: 3rem;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -150,20 +155,6 @@ h2 {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#welcome,
-.section-title {
-    margin: 2.5rem 0;
-}
-
-#welcome span {
-    color: rgb(var(--text-rgb));
-    display: block;
-    font-size: 1.875rem;
-    font-weight: 300;
-    line-height: 2.25rem;
-    margin-bottom: 0.5rem;
-}
-
 #love {
     color: rgba(107, 114, 128, 1);
     font-size: 0.875rem;
@@ -179,11 +170,4 @@ h2 {
         display: inline;
         margin-top: -0.25rem;
     }
-}
-
-.actions {
-    display: flex;
-    align-items: center;
-    padding: 1rem 0;
-    column-gap: 0.6rem;
 }

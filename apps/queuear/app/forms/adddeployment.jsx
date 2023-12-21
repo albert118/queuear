@@ -1,10 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '../components/button';
-import TextInput from './textinput';
-import styles from './form.module.scss';
 import submit from './actions';
+import { Form, TextInput } from '@queuear/components';
 
 export function AddDeployment({ onClose }) {
     // default state is set (IPlannedDeployment)
@@ -22,19 +20,8 @@ export function AddDeployment({ onClose }) {
         });
     };
 
-    const onCancel = () => {
-        console.log('canceled');
-        onClose(null);
-    };
-
-    const onSubmit = async () => {
-        console.log('saved and submitted');
-        await submit(data);
-        onClose(data);
-    };
-
     return (
-        <form className={styles['form']}>
+        <Form onSubmit={submit} onComplete={onClose} formData={data}>
             <TextInput
                 label='Person'
                 value={data.person}
@@ -55,15 +42,6 @@ export function AddDeployment({ onClose }) {
                 name='strategy'
                 onChange={onUpdate}
             />
-
-            <div className={styles['form-actions']}>
-                <Button primary={false} onClick={onCancel}>
-                    Cancel
-                </Button>
-                <Button type='submit' primary={true} onClick={onSubmit}>
-                    Save
-                </Button>
-            </div>
-        </form>
+        </Form>
     );
 }

@@ -1,0 +1,8 @@
+.actions-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(var(--background));
+    padding: 1rem;
+    column-gap: 0.6rem;
+}

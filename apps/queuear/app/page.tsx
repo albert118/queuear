@@ -1,10 +1,10 @@
-import Greeter from './components/greeter';
-import Banner from './components/banner';
-import Footer from './components/footer';
-
-import { PlannedDeploymentsList } from './components/plannedeploymentslist';
-import { AddAction } from './components/addaction';
-
+import {
+    Banner,
+    Footer,
+    Greeter,
+    PlannedDeployments
+} from '@queuear/components';
+import { AddDeployment } from './forms';
 import { useEnvironmentInfo } from '@queuear/data';
 
 export default async function Page() {
@@ -13,15 +13,13 @@ export default async function Page() {
     return (
         <div className='wrapper'>
             <div className='container auto-center'>
-                <Greeter {...environment} />
-
-                <AddAction />
+                <Greeter {...{ ...environment, AddDeployment }} />
 
                 <h2>Current Deployment</h2>
                 <Banner />
 
                 <h2>Planned Deployments</h2>
-                <PlannedDeploymentsList />
+                <PlannedDeployments />
 
                 <Footer />
             </div>
